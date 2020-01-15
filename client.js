@@ -4,7 +4,7 @@ const connect = function() {
     host: '172.46.2.204',
     port: 50541
   });
-  // interpret incoming data as text
+ 
   conn.setEncoding('utf8'); 
   conn.on('data', (data) => {
     console.log(data);
@@ -12,8 +12,6 @@ const connect = function() {
   conn.on('connect', () => {
     console.log('Successfully connected to game server ');
     conn.write("Name: BAE");
-    // conn.write("Move: up");
-    // setInterval(() => conn.write("Move: up"), 50);
   });
 
   return conn;
