@@ -1,4 +1,18 @@
 const net = require('net');
+const handleUserInput = function(key){
+  if (key === '\u0003') {
+    process.exit();
+  }
+}
+const setupInput = function(){
+  const stdin = process.stdin.on('data', (key) => handleUserInput(key));
+  stdin.setRawMode(true);
+  stdin.setEncoding('utf8');
+  stdin.resume();
+
+  return stdin;
+}
+
 
 /**
  * Establishes connection with the game server
@@ -6,3 +20,4 @@ const net = require('net');
 const { connect } = require('./client');
 console.log('Connecting ...');
 connect();
+setupInput();
